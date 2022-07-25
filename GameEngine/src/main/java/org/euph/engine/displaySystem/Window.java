@@ -1,4 +1,4 @@
-package org.euph.engine.windowSystem;
+package org.euph.engine.displaySystem;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
@@ -74,21 +74,22 @@ public class Window {
         glfwHideWindow(windowID);
     }
 
-    /** Makes this Window the Primary Window of the {@link org.euph.engine.windowSystem.WindowManager}.
+    /** Makes this Window the Primary Window of the {@link DisplayManager}.
      *
      * @author snoweuph
      * @version 1.0
      */
     public void makePrimary(){
-        WindowManager.setPrimary(this);
+        DisplayManager.setPrimary(this);
     }
 
-    //TODO: Add the other Create Window Functions
-    /** Enables or Disables VSync. Defaults is decided by {@link org.euph.engine.windowSystem.WindowManager#createWindow(int, int, boolean, boolean) CreateWindow}.
+    /** Enables or Disables VSync. Defaults is decided by {@link DisplayManager#createWindow(int, int, boolean, boolean) CreateWindow}.
      * 
      * @param enabled Whether VSync should be enabled or not.
      *
-     * @see org.euph.engine.windowSystem.WindowManager#createWindow(int, int, boolean, boolean)
+     * @see DisplayManager#createWindow(int, int, boolean, boolean) CreateWindow short
+     * @see DisplayManager#createWindow(int, int, String, boolean, boolean, boolean, boolean) CreateWindow medium
+     * @see DisplayManager#createWindow(int, int, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) CreateWindow long
      * 
      * @author snoweuph
      * @version 1.0
@@ -105,7 +106,7 @@ public class Window {
         glfwMakeContextCurrent(oldContext);
     }
 
-    /** Destroys this Window, unbinds all callbacks and removes itself from {@link org.euph.engine.windowSystem.WindowManager#windows}.
+    /** Destroys this Window, unbinds all callbacks and removes itself from {@link DisplayManager#windows}.
      *
      * @author snoweuph
      * @version 1.0
@@ -114,7 +115,7 @@ public class Window {
         //Unbind all Callbacks before Destroying the Window
         glfwFreeCallbacks(windowID);
         glfwDestroyWindow(windowID);
-        WindowManager.removeWindow(this);
+        DisplayManager.removeWindow(this);
     }
 
     /** Updates this window. It swaps the Buffers and updates the {@link #getDelta() DeltaTime}.

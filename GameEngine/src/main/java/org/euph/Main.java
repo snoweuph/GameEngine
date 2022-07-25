@@ -1,7 +1,7 @@
 package org.euph;
 
-import org.euph.engine.windowSystem.WindowManager;
-import org.euph.engine.windowSystem.Window;
+import org.euph.engine.displaySystem.DisplayManager;
+import org.euph.engine.displaySystem.Window;
 
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 
@@ -9,10 +9,10 @@ public class Main {
     public static void main(String[] args) {
 
         //Initialize the Window Manager
-        WindowManager.init();
+        DisplayManager.init();
 
         //Create the Window
-        Window win = WindowManager.createWindow(512, 512, true, true);
+        Window win = DisplayManager.createWindow(512, 512, true, true);
 
         //Show the Window
         win.show(true);
@@ -23,7 +23,7 @@ public class Main {
         }
 
         //Cleanup everything after closing
-        WindowManager.cleanUp();
+        DisplayManager.cleanUp();
     }
 
     public static void mainLoop(Window win) {
