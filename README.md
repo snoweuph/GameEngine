@@ -39,3 +39,5 @@ what is used?
   - xxHash *as a fast Hashing lib*
   
   - Zstandard *as a compression and decompression lib*
+  
+  - Steamworks4J *to get acces to steam integration*
