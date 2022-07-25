@@ -1,19 +1,24 @@
 package org.euph;
 
-import org.euph.engine.renderSystem.DisplayManager;
+import org.euph.engine.windowSystem.WindowManager;
+import org.euph.engine.windowSystem.Window;
+
+import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 
 public class Main {
     public static void main(String[] args) {
 
-        DisplayManager.createDisplay(1280, 720, "Test");
+        WindowManager.init();
 
-        //the main loop
-        while(!DisplayManager.isCloseRequested()){
-            DisplayManager.UpdateDisplay();
+        Window win = WindowManager.createWindow(512, 512, true, true);
+
+        win.show(true);
+
+        while (!win.shouldClose()){
+            glfwPollEvents();
+            win.update();
         }
 
-        //destroy the window and cleanup
-        DisplayManager.destroyDisplay();
-
+        WindowManager.cleanUp();
     }
 }

@@ -9,6 +9,7 @@ version = "1.0-SNAPSHOT"
 val lwjglVersion = "3.3.1"
 val steamworks4jVersion = "1.9.0"
 val `steamworks4j-serverVersion` = "1.9.0"
+val jomlVersion = "1.10.4"
 
 val lwjglNatives = Pair(
     System.getProperty("os.name")!!,
@@ -69,9 +70,9 @@ dependencies {
     runtimeOnly("org.lwjgl", "lwjgl-remotery", classifier = lwjglNatives)
     runtimeOnly("org.lwjgl", "lwjgl-stb", classifier = lwjglNatives)
     runtimeOnly("org.lwjgl", "lwjgl-vma", classifier = lwjglNatives)
-    if (lwjglNatives == "natives-macos" || lwjglNatives == "natives-macos-arm64") runtimeOnly("org.lwjgl", "lwjgl-vulkan", classifier = lwjglNatives)
     runtimeOnly("org.lwjgl", "lwjgl-xxhash", classifier = lwjglNatives)
     runtimeOnly("org.lwjgl", "lwjgl-zstd", classifier = lwjglNatives)
     implementation("com.code-disaster.steamworks4j", "steamworks4j", steamworks4jVersion)
     implementation("com.code-disaster.steamworks4j", "steamworks4j-server", `steamworks4j-serverVersion`)
+    implementation("org.joml", "joml", jomlVersion)
 }
