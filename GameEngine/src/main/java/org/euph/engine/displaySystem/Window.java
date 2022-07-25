@@ -30,7 +30,6 @@ public class Window {
      * @param posY the current Y Position of the GLFW Window.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public Window(long windowID, String title, int width, int height, int posX, int posY) {
         //Set start Values
@@ -52,7 +51,6 @@ public class Window {
     /** Binds this Window in GLFW for the current Thread. The Limitations are the same as {@link org.lwjgl.glfw.GLFW#glfwMakeContextCurrent(long window)}.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void bind(){
         glfwMakeContextCurrent(windowID);
@@ -64,7 +62,6 @@ public class Window {
      * @param enabled Whether the Window should be hidden or shown.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void show(boolean enabled){
         if(enabled){
@@ -77,7 +74,6 @@ public class Window {
     /** Makes this Window the Primary Window of the {@link DisplayManager}.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void makePrimary(){
         DisplayManager.setPrimary(this);
@@ -92,7 +88,6 @@ public class Window {
      * @see DisplayManager#createWindow(int, int, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) CreateWindow long
      * 
      * @author snoweuph
-     * @version 1.0
      */
     public void vsync(boolean enabled){
         long oldContext = glfwGetCurrentContext();
@@ -109,7 +104,6 @@ public class Window {
     /** Destroys this Window, unbinds all callbacks and removes itself from {@link DisplayManager#windows}.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void destroy(){
         //Unbind all Callbacks before Destroying the Window
@@ -121,7 +115,6 @@ public class Window {
     /** Updates this window. It swaps the Buffers and updates the {@link #getDelta() DeltaTime}.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void update(){
         glfwSwapBuffers(windowID);
@@ -163,7 +156,6 @@ public class Window {
     /** @return the GLFW Window ID.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public long getWindowID(){
         return windowID;
@@ -171,7 +163,6 @@ public class Window {
     /** @return the current Title of the Window.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public String getTitle() {
         return title;
@@ -179,7 +170,6 @@ public class Window {
     /** @return the current Width of the Window.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public int getWidth() {
         return width;
@@ -187,7 +177,6 @@ public class Window {
     /** @return the current Height of the Window.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public int getHeight() {
         return height;
@@ -195,7 +184,6 @@ public class Window {
     /** @return the current X Position of the Window.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public int getPosX() {
         return posX;
@@ -203,7 +191,6 @@ public class Window {
     /** @return the current Y Position of the Window.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public int getPosY() {
         return posY;
@@ -211,7 +198,6 @@ public class Window {
     /** @return the Time needed to draw the last Frame.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public float getDelta() {
         return delta;
@@ -219,7 +205,6 @@ public class Window {
     /** @return the Time needed to draw the last Frame scaled by a big constant.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public float getScaledDelta(){
         return delta*100f;
@@ -227,7 +212,6 @@ public class Window {
     /** @return whether the Window should be closed or not.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public boolean shouldClose(){
         return glfwWindowShouldClose(windowID);
@@ -239,7 +223,6 @@ public class Window {
      * @param title the new Window title.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void setTitle(String title) {
         glfwSetWindowTitle(windowID, title);
@@ -251,7 +234,6 @@ public class Window {
      * @param height the new Height.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void setSize(int width, int height) {
         glfwSetWindowSize(windowID, width, height);
@@ -263,7 +245,6 @@ public class Window {
      * @param posY the new Y Position.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void setPosition(int posX, int posY) {
         glfwSetWindowPos(windowID, posX, posY);
@@ -274,7 +255,6 @@ public class Window {
      * @param icon the new Window Icon.
      *
      * @author snoweuph
-     * @version 1.0
      */
     public void setIcon(GLFWImage.Buffer icon){
         glfwSetWindowIcon(windowID, icon);
