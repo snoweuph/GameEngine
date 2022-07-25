@@ -158,7 +158,27 @@ public class DisplayManager {
         windows.remove(window);
     }
 
-    //TODO: Primary Window Functions
+    //Primary Window Fast Access Functions
+    public void pBind() {
+        if(primary == null) return;
+        primary.bind();
+    }
+    public void pShow(){
+        if(primary == null) return;
+        primary.show(true);
+    }
+    public long pID(){
+        if(primary == null) return 0L;
+        return primary.getWindowID();
+    }
+    public float pDelta(){
+        if(primary == null) return 0;
+        return primary.getDelta();
+    }
+    public float pDeltaScaled(){
+        if(primary == null) return 0;
+        return primary.getScaledDelta();
+    }
 
     //Getter
     public static ArrayList<Window> getWindows() {
