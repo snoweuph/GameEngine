@@ -127,6 +127,7 @@ public class Window {
         lastFrameTime = currentFrameTime;
     }
     private long getCurrentTime(){
+        //TODO: should I divide by / GLFW.glfwGetTimerFrequency() ?
         return (long) (glfwGetTime() * 1000L);
     }
 
