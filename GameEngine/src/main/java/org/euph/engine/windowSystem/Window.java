@@ -45,6 +45,9 @@ public class Window {
         }
         glfwHideWindow(windowID);
     }
+    public void makePrimary(){
+        WindowManager.setPrimary(this);
+    }
     public void vsync(boolean enabled){
         long oldContext = glfwGetCurrentContext();
         glfwMakeContextCurrent(windowID);
@@ -60,8 +63,7 @@ public class Window {
         //Unbind all Callbacks before Destroying the Window
         glfwFreeCallbacks(windowID);
         glfwDestroyWindow(windowID);
-        //TODO: find itself in the WindowManager and remove it;
-
+        WindowManager.removeWindow(this);
     }
     public void update(){
         glfwSwapBuffers(windowID);
@@ -100,6 +102,9 @@ public class Window {
     };
 
     //Getter
+    public long getWindowID(){
+        return windowID;
+    }
     public String getTitle() {
         return title;
     }

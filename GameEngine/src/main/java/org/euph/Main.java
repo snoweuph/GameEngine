@@ -16,9 +16,9 @@ public class Main {
 
         while (!win.shouldClose()){
             glfwPollEvents();
+            win.setTitle("DeltaTime is: " + win.getDelta());
             win.update();
         }
-
         WindowManager.cleanUp();
     }
 }
