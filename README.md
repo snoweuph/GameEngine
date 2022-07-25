@@ -16,6 +16,8 @@ what is used?
   
   - GLFW *as a base API*
   
+  - JOML *as base Math Lib*
+  
   - Libdivide *as a speedup in divisions to get an overall faster performance*
   
   - Meshoptimizer *as a lib to optimize meshes for better performance*
