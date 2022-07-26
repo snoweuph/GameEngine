@@ -123,12 +123,11 @@ public class Window {
     }
     private void updateDeltaTime(){
         long currentFrameTime = getCurrentTime();
-        delta = (currentFrameTime - lastFrameTime)/1000f;
+        delta = (float)(currentFrameTime - lastFrameTime) / GLFW.glfwGetTimerFrequency();
         lastFrameTime = currentFrameTime;
     }
-    private long getCurrentTime(){
-        //TODO: should I divide by / GLFW.glfwGetTimerFrequency() ?
-        return (long) (glfwGetTime() * 1000L);
+    public long getCurrentTime(){
+        return (long) (glfwGetTime() * GLFW.glfwGetTimerFrequency());
     }
 
     //Callbacks

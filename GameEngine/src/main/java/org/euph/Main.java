@@ -3,6 +3,7 @@ package org.euph;
 import org.euph.engine.displaySystem.DisplayManager;
 import org.euph.engine.displaySystem.Window;
 
+import static org.lwjgl.glfw.GLFW.glfwGetTimerFrequency;
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 
 public class Main {
@@ -28,7 +29,9 @@ public class Main {
 
     public static void mainLoop(Window win) {
         glfwPollEvents();
+
         win.setTitle("DeltaTime is: " + win.getDelta());
+
         win.update();
     }
 }
