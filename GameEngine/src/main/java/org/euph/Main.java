@@ -41,8 +41,7 @@ public class Main {
 
         //Cleanup everything after closing
         DisplayManager.cleanUp();
-        RemoteryGL.rmt_UnbindOpenGL();
-
+        RemoteryGL.rmt_EndOpenGLSample();
         Remotery.rmt_DestroyGlobalInstance(rmt_pointer.get(0));
     }
 
