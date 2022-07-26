@@ -83,9 +83,9 @@ public class Window {
      * 
      * @param enabled Whether VSync should be enabled or not.
      *
-     * @see DisplayManager#createWindow(int, int, boolean, boolean) CreateWindow short
-     * @see DisplayManager#createWindow(int, int, String, boolean, boolean, boolean, boolean) CreateWindow medium
-     * @see DisplayManager#createWindow(int, int, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) CreateWindow long
+     * @see DisplayManager#createWindow(int, int, boolean, boolean) createWindow minimal parameters
+     * @see DisplayManager#createWindow(int, int, long, String, boolean, boolean, boolean, boolean) createWindow medium parameters
+     * @see DisplayManager#createWindow(int, int, long, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) createWindow maximum parameters
      * 
      * @author snoweuph
      */
