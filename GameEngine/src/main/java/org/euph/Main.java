@@ -2,7 +2,6 @@ package org.euph;
 
 import org.euph.engine.displaySystem.DisplayManager;
 import org.euph.engine.displaySystem.Window;
-import org.lwjgl.glfw.GLFWVidMode;
 
 import static org.lwjgl.glfw.GLFW.*;
 
