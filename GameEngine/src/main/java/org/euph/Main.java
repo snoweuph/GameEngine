@@ -2,9 +2,9 @@ package org.euph;
 
 import org.euph.engine.displaySystem.DisplayManager;
 import org.euph.engine.displaySystem.Window;
+import org.lwjgl.glfw.GLFWVidMode;
 
-import static org.lwjgl.glfw.GLFW.glfwGetTimerFrequency;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class Main {
         DisplayManager.init();
 
         //Create the Window
-        Window win = DisplayManager.createWindow(512, 512, true, true);
+        Window win = DisplayManager.createWindow(1280, 720, 0, "Hello World", true, false, true, true);
 
         //Show the Window
         win.show(true);

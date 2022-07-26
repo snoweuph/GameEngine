@@ -87,7 +87,7 @@ public class DisplayManager {
         //Return Window
         return window;
     }
-    public static Window createWindow(int width, int height, String title, boolean resizable, boolean hide, boolean vsync, boolean bind){
+    public static Window createWindow(int width, int height, long fullscreenMonitor, String title, boolean resizable, boolean hide, boolean vsync, boolean bind){
         //Throw error if the DisplayManager is not initialized
         if(!initialized)throw new IllegalStateException("Window can't be created if the DisplayManager is not initialized");
 
@@ -99,7 +99,7 @@ public class DisplayManager {
         glfwWindowHint(GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE);
 
         //Create the Window and Throw an Error if that failed
-        long windowID = glfwCreateWindow(width, height, title, 0, 0);
+        long windowID = glfwCreateWindow(width, height, title, fullscreenMonitor, 0);
         if(windowID == 0)throw new RuntimeException("Failed to create the GLFW Window");
 
         //Create Window Object
@@ -118,7 +118,7 @@ public class DisplayManager {
         //Return Window
         return window;
     }
-    public static Window createWindow(int width, int height, String title, GLFWImage.Buffer icon, boolean resizable, boolean hide, boolean vsync, boolean bind){
+    public static Window createWindow(int width, int height, long fullscreenMonitor, String title, GLFWImage.Buffer icon, boolean resizable, boolean hide, boolean vsync, boolean bind){
         //Throw error if the DisplayManager is not initialized
         if(!initialized)throw new IllegalStateException("Window can't be created if the DisplayManager is not initialized");
 
@@ -130,7 +130,7 @@ public class DisplayManager {
         glfwWindowHint(GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE);
 
         //Create the Window and Throw an Error if that failed
-        long windowID = glfwCreateWindow(width, height, title, 0, 0);
+        long windowID = glfwCreateWindow(width, height, title, fullscreenMonitor, 0);
         if(windowID == 0)throw new RuntimeException("Failed to create the GLFW Window");
 
         //Create Window Object
