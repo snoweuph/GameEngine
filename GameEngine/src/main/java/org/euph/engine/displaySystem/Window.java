@@ -1,4 +1,4 @@
-package org.euph.engine.windowSystem;
+package org.euph.engine.displaySystem;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
@@ -6,8 +6,11 @@ import org.lwjgl.opengl.GL;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 
+/** An Object that defines a Window and is a wrapper for GLFW.
+ * @author snoweuph
+ * @version 1.0
+ */
 public class Window {
-
     private final long windowID;
     private String title;
     private int width;
@@ -17,6 +20,17 @@ public class Window {
     private long lastFrameTime;
     private float delta;
 
+    /** Creates a new Window Object to wrap a GLFW Window.
+     *
+     * @param windowID the ID of the GLFW Window this will be used to wrap.
+     * @param title the current Title of the GLFW Window.
+     * @param width the current Width of the GLFW Window.
+     * @param height the current Height of the GLFW Window.
+     * @param posX the current X Position of the GLFW Window.
+     * @param posY the current Y Position of the GLFW Window.
+     *
+     * @author snoweuph
+     */
     public Window(long windowID, String title, int width, int height, int posX, int posY) {
         //Set start Values
         this.windowID = windowID;
@@ -34,10 +48,21 @@ public class Window {
         lastFrameTime = getCurrentTime();
     }
 
+    /** Binds this Window in GLFW for the current Thread. The Limitations are the same as {@link org.lwjgl.glfw.GLFW#glfwMakeContextCurrent(long window)}.
+     *
+     * @author snoweuph
+     */
     public void bind(){
         glfwMakeContextCurrent(windowID);
         GL.createCapabilities();
     }
+
+    /** Hides or shows the Window.
+     *
+     * @param enabled Whether the Window should be hidden or shown.
+     *
+     * @author snoweuph
+     */
     public void show(boolean enabled){
         if(enabled){
             glfwShowWindow(windowID);
@@ -45,9 +70,25 @@ public class Window {
         }
         glfwHideWindow(windowID);
     }
+
+    /** Makes this Window the Primary Window of the {@link DisplayManager}.
+     *
+     * @author snoweuph
+     */
     public void makePrimary(){
-        WindowManager.setPrimary(this);
+        DisplayManager.setPrimary(this);
     }
+
+    /** Enables or Disables VSync. Defaults is decided by {@link DisplayManager#createWindow(int, int, boolean, boolean) CreateWindow}.
+     * 
+     * @param enabled Whether VSync should be enabled or not.
+     *
+     * @see DisplayManager#createWindow(int, int, boolean, boolean) createWindow minimal parameters
+     * @see DisplayManager#createWindow(int, int, long, String, boolean, boolean, boolean, boolean) createWindow medium parameters
+     * @see DisplayManager#createWindow(int, int, long, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) createWindow maximum parameters
+     * 
+     * @author snoweuph
+     */
     public void vsync(boolean enabled){
         long oldContext = glfwGetCurrentContext();
         glfwMakeContextCurrent(windowID);
@@ -59,12 +100,22 @@ public class Window {
         glfwSwapInterval(0);
         glfwMakeContextCurrent(oldContext);
     }
+
+    /** Destroys this Window, unbinds all callbacks and removes itself from {@link DisplayManager#windows}.
+     *
+     * @author snoweuph
+     */
     public void destroy(){
         //Unbind all Callbacks before Destroying the Window
         glfwFreeCallbacks(windowID);
         glfwDestroyWindow(windowID);
-        WindowManager.removeWindow(this);
+        DisplayManager.removeWindow(this);
     }
+
+    /** Updates this window. It swaps the Buffers and updates the {@link #getDelta() DeltaTime}.
+     *
+     * @author snoweuph
+     */
     public void update(){
         glfwSwapBuffers(windowID);
         //Update the delta Time (the time that was needed to render the last frame)
@@ -72,11 +123,11 @@ public class Window {
     }
     private void updateDeltaTime(){
         long currentFrameTime = getCurrentTime();
-        delta = (currentFrameTime - lastFrameTime)/1000f;
+        delta = (float)(currentFrameTime - lastFrameTime) / GLFW.glfwGetTimerFrequency();
         lastFrameTime = currentFrameTime;
     }
-    private long getCurrentTime(){
-        return (long) (glfwGetTime() * 1000L);
+    public long getCurrentTime(){
+        return (long) (glfwGetTime() * GLFW.glfwGetTimerFrequency());
     }
 
     //Callbacks
@@ -102,47 +153,109 @@ public class Window {
     };
 
     //Getter
+    /** @return the GLFW Window ID.
+     *
+     * @author snoweuph
+     */
     public long getWindowID(){
         return windowID;
     }
+    /** @return the current Title of the Window.
+     *
+     * @author snoweuph
+     */
     public String getTitle() {
         return title;
     }
+    /** @return the current Width of the Window.
+     *
+     * @author snoweuph
+     */
     public int getWidth() {
         return width;
     }
+    /** @return the current Height of the Window.
+     *
+     * @author snoweuph
+     */
     public int getHeight() {
         return height;
     }
+    /** @return the current X Position of the Window.
+     *
+     * @author snoweuph
+     */
     public int getPosX() {
         return posX;
     }
+    /** @return the current Y Position of the Window.
+     *
+     * @author snoweuph
+     */
     public int getPosY() {
         return posY;
     }
+    /** @return the Time needed to draw the last Frame.
+     *
+     * @author snoweuph
+     */
     public float getDelta() {
         return delta;
     }
+    /** @return the Time needed to draw the last Frame scaled by a big constant.
+     *
+     * @author snoweuph
+     */
     public float getScaledDelta(){
         return delta*100f;
     }
+    /** @return whether the Window should be closed or not.
+     *
+     * @author snoweuph
+     */
     public boolean shouldClose(){
         return glfwWindowShouldClose(windowID);
     }
 
     //Setter
+    /** Set the Title of the Window.
+     *
+     * @param title the new Window title.
+     *
+     * @author snoweuph
+     */
     public void setTitle(String title) {
         glfwSetWindowTitle(windowID, title);
         this.title = title;
     }
+    /** Set the Size of the Window.
+     *
+     * @param width the new Width.
+     * @param height the new Height.
+     *
+     * @author snoweuph
+     */
     public void setSize(int width, int height) {
         glfwSetWindowSize(windowID, width, height);
         //Info: no need to update Variables here, because of the Callback
     }
+    /** Set the Position of the Window.
+     *
+     * @param posX the new X Position.
+     * @param posY the new Y Position.
+     *
+     * @author snoweuph
+     */
     public void setPosition(int posX, int posY) {
         glfwSetWindowPos(windowID, posX, posY);
         //Info: no need to update Variables here, because of the Callback
     }
+    /** Set the Icon of the Window.
+     *
+     * @param icon the new Window Icon.
+     *
+     * @author snoweuph
+     */
     public void setIcon(GLFWImage.Buffer icon){
         glfwSetWindowIcon(windowID, icon);
     }
