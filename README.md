@@ -1,4 +1,4 @@
-## TODO: This Redme need s rework
+## TODO: This Redme needs rework
 
 # GameEngine
 
