@@ -38,8 +38,6 @@ public class Entity {
             addedComponents.add(requiredComponent.getClass());
             componentsOnEntity = (ArrayList<Class<? extends Component>>) componentsOnEntity.stream().distinct();
         }
-        //Remove Duplicate Entries of the List added Components
-        addedComponents = (ArrayList<Class<? extends Component>>) addedComponents.stream().distinct();
         //Set the new Entity
         component.setEntity(this);
         //Add the References to the ECS
