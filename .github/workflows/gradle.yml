@@ -29,7 +29,14 @@ jobs:
         java-version: '16'
         distribution: 'temurin'
     - name: go to right path
-      run: cd GameEngine
+      run: |
+        ls
+        cd GameEngine
+        ls
+        cd gradle
+        ls
+        cd wrapper
+        ls
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
