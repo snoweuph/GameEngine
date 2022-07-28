@@ -6,11 +6,9 @@ import org.euph.engine.entityComponentSystem.components.Test3;
 import org.euph.engine.entityComponentSystem.components.TestComponent;
 import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
 import org.euph.engine.entityComponentSystem.systems.display.Window;
-import org.euph.engine.util.ClassReflection;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.util.remotery.Remotery;
 import org.lwjgl.util.remotery.RemoteryGL;
-import org.reflections.Reflections;
 
 import static org.lwjgl.glfw.GLFW.*;
 

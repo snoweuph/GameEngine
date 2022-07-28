@@ -45,6 +45,7 @@ public class Entity {
      *
      * @author snoweuph
      */
+    //TODO: make a version ofthis function allwoing to add an array of componts each as their own parameter like ->  ..
     private ArrayList<Class<? extends Component>> putComponent(Component component, ArrayList<Class<? extends Component>> componentsOnEntityList){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");

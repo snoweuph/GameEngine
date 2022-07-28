@@ -1,11 +1,9 @@
 package org.euph.engine.entityComponentSystem;
 
 import org.euph.engine.util.ClassReflection;
-import org.lwjgl.util.remotery.Remotery;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 //TODO: JavaDoc
 //TODO: Implement the rest of the features
