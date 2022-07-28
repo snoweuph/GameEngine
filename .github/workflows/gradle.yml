@@ -28,17 +28,8 @@ jobs:
       with:
         java-version: '16'
         distribution: 'temurin'
-    - name: run pwd
-      run: pwd
-    - name: run some path
-      run: |
-        ls
-        cd gradle
-        ls
-        cd wrapper
-        ls
-    - name: run cat
-      run: cat /home/runner/work/GameEngine/GameEngine/gradle/wrapper/gradle-wrapper.properties
+    - name: go to right path
+      run: cd GameEngine
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
