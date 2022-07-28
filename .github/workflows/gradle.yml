@@ -28,6 +28,8 @@ jobs:
       with:
         java-version: '16'
         distribution: 'temurin'
+    - name: run pwd
+      run: pwd
     - name: run cat
       run: cat /home/runner/work/GameEngine/GameEngine/gradle/wrapper/gradle-wrapper.properties
     - name: Build with Gradle
