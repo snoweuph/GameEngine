@@ -14,8 +14,10 @@ assignees: ''
 - Only put in most important Information
 
 ## Environment Information
-- JDK Version: nameJdk x.x.x
-- OS: OSName xArchitecture
+please replace `JDK_NAME` , `vX.X.X` , `OS_NAME and VERSION_AND_ARCHITECTURE` with the right Values
+
+- JDK Version: ![JDK_NAME](https://img.shields.io/static/v1?label=JDK_NAME&message=vX.X.X&color=orange)
+- OS: ![OS_NAME]https://img.shields.io/static/v1?label=OS_NAME&message=VERSION_AND_ARCHITECTURE&color=yellow
 
 ## Full Description
 put your full Problem Description here
