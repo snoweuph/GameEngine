@@ -12,7 +12,7 @@
 
 ### Bugfixes and Minor Code Improvements
 
-fork the project and do a pullrequest to the [dev](https://github.com/snoweuph/GameEngine/tree/dev) branch with the appropriate pull request template.
+fork the project and do a pullrequest to the ![](https://img.shields.io/badge/Branch-dev-F05032?logo=git&style=flat-square) with the appropriate pull request template.
 please name all your commits appropriate in an informative short way, for longer commit infos use the commit description.
 **don't** stash all your commits together, stashing commits means losing the information of the Summaries and Description and should be used with caution.
 
