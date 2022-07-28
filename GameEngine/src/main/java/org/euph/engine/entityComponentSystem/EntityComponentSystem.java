@@ -8,8 +8,8 @@ import java.util.Objects;
 //TODO: Implement the rest of the features
 public class EntityComponentSystem {
 
-    private static HashMap<Class<? extends Component>, ArrayList<Component>> componentInstancesMap; // K = a Component; V = all instances of this Component;
-    private static HashMap<Entity, ArrayList<Component>> entityComponentMap;
+    private static HashMap<Class<? extends Component>, ArrayList<Component>> componentInstancesMap = new HashMap<>(); // K = a Component; V = all instances of this Component;
+    private static HashMap<Entity, ArrayList<Component>> entityComponentMap = new HashMap<>();
 
     protected static void createEntity(Entity entity){
         //Test if this instance already has a references, if yes return.
@@ -118,7 +118,9 @@ public class EntityComponentSystem {
 
     //Utility functions
     //TODO: Make Wrapper Function, that Caches the Result of this, to speed up the ECS
+    //TODO: Fix this Function is working Inversed, correct that
     private static ArrayList<Class<? extends Component>> getComponentInheritanceList(Class<?extends Component> componentType, ArrayList<Class<? extends Component>> foundComponents){
+
         //Get SupperClass
         Class<?> superClass = componentType.getSuperclass();
         //If SuperClass is directly Component.class, it's a first Level Component

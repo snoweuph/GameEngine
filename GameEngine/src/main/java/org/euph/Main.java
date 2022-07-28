@@ -1,5 +1,8 @@
 package org.euph;
 
+import org.euph.engine.entityComponentSystem.Entity;
+import org.euph.engine.entityComponentSystem.components.Test2;
+import org.euph.engine.entityComponentSystem.components.TestComponent;
 import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
 import org.euph.engine.entityComponentSystem.systems.display.Window;
 import org.lwjgl.PointerBuffer;
@@ -24,7 +27,17 @@ public class Main {
 
         //Show the Window
         win.show(true);
+        /*
+        Entity e = new Entity();
+        e.putComponent(new TestComponent());
+        e.putComponent(new Test2());
 
+        System.out.println(e.getComponents());
+        e.removeAllComponents(Test2.class);
+        System.out.println(e.getComponents());
+        */
+
+        //System.out.println("Test: " + TestComponent.class.getClasses());
 
         //run the Main Loop
         while (!win.shouldClose()){
