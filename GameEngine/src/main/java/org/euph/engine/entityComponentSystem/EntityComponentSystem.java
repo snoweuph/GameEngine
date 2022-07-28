@@ -1,8 +1,11 @@
 package org.euph.engine.entityComponentSystem;
 
+import org.euph.engine.util.ClassReflection;
+import org.lwjgl.util.remotery.Remotery;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
+import java.util.Set;
 
 //TODO: JavaDoc
 //TODO: Implement the rest of the features
@@ -30,7 +33,7 @@ public class EntityComponentSystem {
     protected static void addComponentReferences(Component component, Entity entity){
         //References to the Components Class
         Class<? extends Component> componentClass = component.getClass();
-        ArrayList<Class<? extends Component>> targets = getComponentInheritanceList(componentClass, new ArrayList<>());
+        ArrayList<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
         targets.add(componentClass);
         //Test if an Arraylist for the targeted Components already exists, if not, create one.
         for(Class<? extends Component> target : targets){
@@ -53,7 +56,7 @@ public class EntityComponentSystem {
     protected static void removeComponentReferences(Component component){
         //References to the Components Class
         Class<? extends Component> componentClass = component.getClass();
-        ArrayList<Class<? extends Component>> targets = getComponentInheritanceList(componentClass, new ArrayList<>());
+        ArrayList<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
         targets.add(componentClass);
         //Test if this Component has Any Entries, if not return
         if(!componentInstancesMap.containsKey(componentClass)) return;
@@ -76,7 +79,7 @@ public class EntityComponentSystem {
     protected static void removeComponentReferences(Entity entity, Class<? extends Component> componentClass){
         //Test if Entity has any of these Components
         ArrayList<Component> entityComponents = entityComponentMap.get(entity);
-        ArrayList<Class<? extends Component>> targets = getComponentInheritanceList(componentClass, new ArrayList<>());
+        ArrayList<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
         targets.add(componentClass);
         //Create HasMap to Temporarily store what needs to be Removed
         HashMap<Class<? extends Component>, ArrayList<Component>> componentsToRemove = new HashMap<>();
@@ -115,23 +118,8 @@ public class EntityComponentSystem {
     protected static ArrayList<Component> getComponentsOnEntity(Entity entity){
         return entityComponentMap.get(entity);
     }
-
-    //Utility functions
-    //TODO: Make Wrapper Function, that Caches the Result of this, to speed up the ECS
-    //TODO: Fix this Function is working Inversed, correct that
-    private static ArrayList<Class<? extends Component>> getComponentInheritanceList(Class<?extends Component> componentType, ArrayList<Class<? extends Component>> foundComponents){
-
-        //Get SupperClass
-        Class<?> superClass = componentType.getSuperclass();
-        //If SuperClass is directly Component.class, it's a first Level Component
-        if(superClass == Component.class) return foundComponents;
-        //Cast current class to right Type and Add it to the list
-        if(Component.class.isAssignableFrom(superClass)){
-            @SuppressWarnings("unchecked")
-            Class<? extends Component> superClassExtendingComponent = (Class<? extends Component>) superClass;
-            foundComponents.add(superClassExtendingComponent);
-            return  getComponentInheritanceList(superClassExtendingComponent, foundComponents);
-        }
-        throw new IllegalStateException("How did you do this?");
+    private static ArrayList<Class<? extends Component>> getComponentInheritanceList(Class<?extends Component> componentClass){
+        ArrayList<Class<? extends Component>> classes = new ArrayList<>(ClassReflection.reflections.getSubTypesOf(componentClass));
+        return classes;
     }
 }

@@ -6,10 +6,13 @@ plugins {
 group = "org.euph"
 version = "1.0-SNAPSHOT"
 
+//LWJGL
 val lwjglVersion = "3.3.1"
 val steamworks4jVersion = "1.9.0"
 val `steamworks4j-serverVersion` = "1.9.0"
 val jomlVersion = "1.10.4"
+//Other
+val reflectionsVersion = "0.10.2"
 
 val lwjglNatives = Pair(
     System.getProperty("os.name")!!,
@@ -38,6 +41,7 @@ repositories {
 }
 
 dependencies {
+    //LWJGL
     implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
 
     implementation("org.lwjgl", "lwjgl")
@@ -75,4 +79,6 @@ dependencies {
     implementation("com.code-disaster.steamworks4j", "steamworks4j", steamworks4jVersion)
     implementation("com.code-disaster.steamworks4j", "steamworks4j-server", `steamworks4j-serverVersion`)
     implementation("org.joml", "joml", jomlVersion)
+    //Other
+    implementation("org.reflections", "reflections", reflectionsVersion)
 }
