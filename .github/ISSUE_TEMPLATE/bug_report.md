@@ -33,6 +33,18 @@ is any other Information needed?
 ---
 
 ## Checklist
+- [ ] Added Short Summary (max. 50 words)
 - [ ] Added used JDK Version
 - [ ] Added OS Name and Architecture
 - [ ] Added Other Important Environment Information if existing
+- [ ] Added Full Bug Description
+- [ ] Added Steps for Reproduction
+- [ ] Added Other Information that is needed, if existing
+- [ ] Re-Read Bug Report before submitting
+- [ ] Waiting patiently for reply (earliest ping after 2 Weeks)
+- [ ] Problem Got Reproduced by Contributors
+- [ ] Problem Git Fully Identifyed
+- [ ] Fix Got Designed
+- [ ] Fix Got Created
+- [ ] Fix is Waiting for Merge
+- [ ] Fix got Merged
