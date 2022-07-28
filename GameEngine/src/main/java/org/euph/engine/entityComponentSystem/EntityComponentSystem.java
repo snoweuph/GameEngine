@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //TODO: JavaDoc
+//TODO: Implement the rest of the features
 public class EntityComponentSystem {
 
     private static HashMap<Class<? extends Component>, ArrayList<Component>> componentInstancesMap; // K = a Component; V = all instances of this Component;
@@ -59,6 +60,9 @@ public class EntityComponentSystem {
         ArrayList<Component> entityComponentsList = entityComponentMap.get(entity);
         entityComponentsList.remove(component);
         entityComponentMap.put(entity, entityComponentsList);
+    }
+    protected static ArrayList<Component> getComponentsOnEntity(Entity entity){
+        return entityComponentMap.get(entity);
     }
 
 }
