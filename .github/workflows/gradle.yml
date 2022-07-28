@@ -32,11 +32,11 @@ jobs:
       run: pwd
     - name: run some path
       run: |
-        - ls
-        - cd gradle
-        - ls
-        - cd wrapper
-        - ls
+        ls
+        cd gradle
+        ls
+        cd wrapper
+        ls
     - name: run cat
       run: cat /home/runner/work/GameEngine/GameEngine/gradle/wrapper/gradle-wrapper.properties
     - name: Build with Gradle
