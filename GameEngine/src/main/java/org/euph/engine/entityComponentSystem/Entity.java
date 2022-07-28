@@ -23,10 +23,13 @@ public class Entity {
      *
      * @param component the Component to put onto this.
      *
+     * @return returns this Entity, so that functions can be stacked.
+     *
      * @author snoweuph
      */
-    public void putComponent(Component component){
+    public Entity putComponent(Component component){
         putComponent(component, new ArrayList<>());
+        return this;
     }
 
     /** The Recursive Function for Putting a Component onto an Entity and also adding all required Components.
@@ -45,7 +48,6 @@ public class Entity {
      *
      * @author snoweuph
      */
-    //TODO: make a version ofthis function allwoing to add an array of componts each as their own parameter like ->  ..
     private ArrayList<Class<? extends Component>> putComponent(Component component, ArrayList<Class<? extends Component>> componentsOnEntityList){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
@@ -82,24 +84,30 @@ public class Entity {
      *
      * @param component the Component to remove.
      *
+     * @return returns this Entity, so that functions can be stacked.
+     *
      * @author snoweuph
      */
-    public void removeComponent(Component component){
+    public Entity removeComponent(Component component){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
         EntityComponentSystem.removeComponentReferences(component);
+        return this;
     }
 
     /** Removes all Components of a Specific Type that are on an Entity
      *
      * @param componentClass the Type of Component that should be removed
      *
+     * @return returns this Entity, so that functions can be stacked.
+     *
      * @author snoweuph
      */
-    public void removeAllComponents(Class<?extends Component> componentClass){
+    public Entity removeAllComponents(Class<?extends Component> componentClass){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
         EntityComponentSystem.removeComponentReferences(this, componentClass);
+        return this;
     }
 
     //Entity Handling
