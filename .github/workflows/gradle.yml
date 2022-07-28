@@ -30,7 +30,7 @@ jobs:
         distribution: 'temurin'
     - name: go to right path
       run: |
-        cd GameEngine/gralde/wrapper
+        cd GameEngine/gradle/wrapper
         echo Files:
         ls
         echo Dir:
