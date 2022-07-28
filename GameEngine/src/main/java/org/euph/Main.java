@@ -1,5 +1,6 @@
 package org.euph;
 
+import org.euph.engine.entityComponentSystem.components.TestComponent;
 import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
 import org.euph.engine.entityComponentSystem.systems.display.Window;
 import org.lwjgl.PointerBuffer;
@@ -24,6 +25,7 @@ public class Main {
 
         //Show the Window
         win.show(true);
+
 
         //run the Main Loop
         while (!win.shouldClose()){
