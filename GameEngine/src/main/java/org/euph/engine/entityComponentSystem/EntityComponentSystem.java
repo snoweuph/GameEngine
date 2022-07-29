@@ -1,6 +1,6 @@
 package org.euph.engine.entityComponentSystem;
 
-import org.euph.engine.util.ClassReflection;
+import org.euph.engine.util.ProjectReflection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -120,6 +120,6 @@ public class EntityComponentSystem {
         return componentInstancesMap.get(componentClass);
     }
     private static List<Class<? extends Component>> getComponentInheritanceList(Class<?extends Component> componentClass){
-        return new ArrayList<>(ClassReflection.reflections.getSubTypesOf(componentClass));
+        return new ArrayList<>(ProjectReflection.DATA.getSubTypesOf(componentClass));
     }
 }

@@ -1,11 +1,10 @@
 package org.euph;
 
 import org.euph.engine.entityComponentSystem.Entity;
-import org.euph.engine.entityComponentSystem.components.Test2;
-import org.euph.engine.entityComponentSystem.components.Test3;
 import org.euph.engine.entityComponentSystem.components.TestComponent;
 import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
 import org.euph.engine.entityComponentSystem.systems.display.Window;
+import org.euph.engine.util.ProjectReflection;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.util.remotery.Remotery;
 import org.lwjgl.util.remotery.RemoteryGL;
@@ -31,20 +30,22 @@ public class Main {
 
         Entity e = new Entity();
 
+        ProjectReflection.DATA.getSubTypesOf(TestComponent.class);
+
         //run the Main Loop
         while (!win.shouldClose()){
             //Start Sampling for Profiler
             Remotery.rmt_BeginCPUSample("CPU Sampling", Remotery.RMTSF_Aggregate, null);
             //Run Main Loop
             mainLoop(win);
-
+            /*
             e.putComponent(new TestComponent());
             e.putComponent(new Test2());
             e.putComponent(new Test3());
 
             Remotery.rmt_BeginCPUSample("Lib Sampling", Remotery.RMTSF_Aggregate, null);
             e.removeAllComponents(TestComponent.class);
-            Remotery.rmt_EndCPUSample();
+            Remotery.rmt_EndCPUSample();*/
 
             //Log Delta Time to Profiler
             Remotery.rmt_LogText("Main Window Delta Time is:" + win.getDelta());
