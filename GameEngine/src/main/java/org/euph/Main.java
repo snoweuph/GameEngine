@@ -2,6 +2,11 @@ package org.euph;
 
 import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
 import org.euph.engine.entityComponentSystem.systems.display.Window;
+import org.euph.engine.entityComponentSystem.Entity;
+import org.euph.engine.entityComponentSystem.components.TestComponent;
+import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
+import org.euph.engine.entityComponentSystem.systems.display.Window;
+import org.euph.engine.util.ProjectReflection;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.util.remotery.Remotery;
 import org.lwjgl.util.remotery.RemoteryGL;
@@ -25,23 +30,33 @@ public class Main {
         //Show the Window
         win.show(true);
 
+        Entity e = new Entity();
+
+        ProjectReflection.DATA.getSubTypesOf(TestComponent.class);
+
         //run the Main Loop
         while (!win.shouldClose()){
             //Start Sampling for Profiler
-            RemoteryGL.rmt_BeginOpenGLSample("GL Sampling",null);
             Remotery.rmt_BeginCPUSample("CPU Sampling", Remotery.RMTSF_Aggregate, null);
             //Run Main Loop
             mainLoop(win);
+            /*
+            e.putComponent(new TestComponent());
+            e.putComponent(new Test2());
+            e.putComponent(new Test3());
+
+            Remotery.rmt_BeginCPUSample("Lib Sampling", Remotery.RMTSF_Aggregate, null);
+            e.removeAllComponents(TestComponent.class);
+            Remotery.rmt_EndCPUSample();*/
+
             //Log Delta Time to Profiler
             Remotery.rmt_LogText("Main Window Delta Time is:" + win.getDelta());
             //End Sampling
-            RemoteryGL.rmt_EndOpenGLSample();
             Remotery.rmt_EndCPUSample();
         }
 
         //Cleanup everything after closing
         DisplayManager.cleanUp();
-        RemoteryGL.rmt_EndOpenGLSample();
         Remotery.rmt_DestroyGlobalInstance(rmt_pointer.get(0));
     }
 
