@@ -33,7 +33,6 @@ public class Entity {
 
     /** The Recursive Function for Putting a Component onto an Entity and also adding all required Components.
      * This Function is wrapped by {@link #putComponent(Component)}.
-     *
      * parameter `List<Class<? extends Component>> componentsOnEntityList` and return value `List<Class<? extends Component>>` are Important
      * for keeping track of what Components are on the Entity without making Lots of Calls to {@link EntityComponentSystem#getComponentsOnEntity(Entity)},
      * while trying to add all required Components.
@@ -58,11 +57,11 @@ public class Entity {
         EntityComponentSystem.addComponentReferences(component, this);
         //Create a list of Existing Components on the Entity, if not an empty one was passed
         List<Class<? extends Component>> componentsOnEntity = componentsOnEntityList;
-        if(componentsOnEntity.size() <= 0){
+        if(componentsOnEntity.size() == 0){
             List<Class<? extends Component>> tempComponentsOnEntity = componentsOnEntity;
             EntityComponentSystem.getComponentsOnEntity(this).forEach(c -> tempComponentsOnEntity.add(c.getClass()));
             //Filter of Duplicate Entries.
-            componentsOnEntity = (ArrayList<Class<? extends Component>>) tempComponentsOnEntity.stream().distinct().collect(Collectors.toList());
+            componentsOnEntity = tempComponentsOnEntity.stream().distinct().collect(Collectors.toList());
         }
         //Create a List to store all Added Components
         List<Class<? extends Component>> addedComponents = new ArrayList<>();
@@ -73,7 +72,7 @@ public class Entity {
             //Run this Function Recursive for the Required Component, add the Added Components to the list of Components on this Entity and then remove duplicates
             componentsOnEntity.addAll(putComponent(requiredComponent, componentsOnEntity));
             addedComponents.add(requiredComponent.getClass());
-            componentsOnEntity = (List<Class<? extends Component>>) componentsOnEntity.stream().distinct().collect(Collectors.toList());
+            componentsOnEntity = componentsOnEntity.stream().distinct().collect(Collectors.toList());
         }
         //Return list of added Components
         return addedComponents;

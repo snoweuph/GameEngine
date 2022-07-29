@@ -17,16 +17,12 @@ public class EntityComponentSystem {
 
     /** This Map Keeps track of all Instances of all {@link Component } Types.
      * The Systems of the ECS will use it to get all instances of specific {@link Component} to do their operation on the data these components hold.
-     *
-     * @author snoweuph
      */
     private static final Map<Class<? extends Component>, List<Component>> componentInstancesMap = new HashMap<>();
     /** This Map Keeps track of all the Instances of {@link Component Components} that are on an {@link Entity}.
      * This is needed to ensure that each {@link Entity} has all the {@link Component Components}, the {@link Component Components} on it require.
      * an example would be that a MeshRenderer requires a Mesh component to work.
      * Keeping track and exposing some functionality of it through {@link Entity Entities} is also important to get some basic functionality working.
-     *
-     * @author snoweuph
      */
     private static final Map<Entity, List<Component>> entityComponentMap = new HashMap<>();
 
@@ -82,7 +78,7 @@ public class EntityComponentSystem {
         List<Component> entityComponentsList = entityComponentMap.get(entity);
         entityComponentsList.add(component);
         entityComponentMap.put(entity, entityComponentsList);
-        //Append the Component Instance to the appropriate ArrayLists inside the HashMap;
+        //Append the Component Instance to the appropriate ArrayLists inside the Map;
         for(Class<? extends Component> target : targets){
             List<Component> instanceList = componentInstancesMap.get(target);
             instanceList.add(component);
@@ -132,7 +128,7 @@ public class EntityComponentSystem {
         List<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
         targets.add(componentClass);
         //Create HasMap to Temporarily store what needs to be Removed
-        HashMap<Class<? extends Component>, List<Component>> componentsToRemove = new HashMap<>();
+        Map<Class<? extends Component>, List<Component>> componentsToRemove = new HashMap<>();
         for (Component component : entityComponents){
             if(!targets.contains(component.getClass()))continue;
             if(!componentsToRemove.containsKey(component.getClass())){
