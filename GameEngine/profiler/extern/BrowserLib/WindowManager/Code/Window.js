@@ -135,7 +135,7 @@ WM.Window = (function()
 	}
 
 
-	// TODO: Update this
+	// __TODO: Update this
 	Window.prototype.AddControl = function(control)
 	{
 		// Get all arguments to this function and replace the first with this window node

@@ -1,5 +1,5 @@
 
-// TODO(don): Separate all knowledge of threads from this timeline
+// _TODO(don): Separate all knowledge of threads from this timeline
 
 TimelineWindow = (function()
 {
@@ -43,7 +43,7 @@ TimelineWindow = (function()
 		DOM.Event.AddHandler(this.TimelineContainer.Node, "mouseleave", Bind(OnMouseLeave, this));
 
 		// Create a canvas for timeline 2D rendering
-		// TODO(don): Port this to shaders
+		// _TODO(don): Port this to shaders
 		this.drawCanvas = document.createElement("canvas");
 		this.drawCanvas.width = this.TimelineContainer.Node.clientWidth;
 		this.drawCanvas.height = this.TimelineContainer.Node.clientHeight;
@@ -156,7 +156,7 @@ TimelineWindow = (function()
 
 	TimelineWindow.prototype.DrawBackground = function()
 	{
-		// TODO(don): Port all this lot to shader, maybe... it's not performance sensitive
+		// _TODO(don): Port all this lot to shader, maybe... it's not performance sensitive
 
 		this.drawContext.clearRect(0, 0, this.drawCanvas.width, this.drawCanvas.height);
 

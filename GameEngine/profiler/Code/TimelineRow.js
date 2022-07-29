@@ -238,7 +238,7 @@ TimelineRow = (function()
         };
 
         // Copy samples to the CPU buffer
-        // TODO(don): Use a ring buffer instead and take advantage of timeline scrolling adding new samples at the beginning/end
+        // _TODO(don): Use a ring buffer instead and take advantage of timeline scrolling adding new samples at the beginning/end
         for (let depth = 0; depth < samples_per_depth.length; depth++)
         {
             let samples_this_depth = samples_per_depth[depth];
@@ -348,7 +348,7 @@ TimelineRow = (function()
             // Rendering of samples ensures a sample is never smaller than one pixel so that all samples always draw, irrespective
             // of zoom level. If a half-open interval is used then some visible samples will be unselectable due to them being
             // smaller than a pixel. This feels pretty odd and the closed interval fixes this feeling well.
-            // TODO(don): There are still inconsistencies, need to shift to pixel range checking to match exactly.
+            // _TODO(don): There are still inconsistencies, need to shift to pixel range checking to match exactly.
             var frame = this.VisibleFrames[i];
             if (time_us >= frame.StartTime_us && time_us <= frame.EndTime_us)
             {

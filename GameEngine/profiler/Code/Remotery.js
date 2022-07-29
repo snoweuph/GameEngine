@@ -1,8 +1,8 @@
 
 //
-// TODO: Window resizing needs finer-grain control
-// TODO: Take into account where user has moved the windows
-// TODO: Controls need automatic resizing within their parent windows
+// _TODO: Window resizing needs finer-grain control
+// _TODO: Take into account where user has moved the windows
+// _TODO: Controls need automatic resizing within their parent windows
 //
 
 
@@ -192,7 +192,7 @@ Remotery = (function()
         // requestAnimationFrame can run up to 60hz which is way too much for drawing the timeline
         // Assume it's running at 60hz and skip frames to achieve 10hz instead
         // Doing this instead of using setTimeout because it's better for browser rendering (or; will be once WebGL is in use)
-        // TODO: Expose as config variable because high refresh rate is great when using a separate viewiing machine
+        // _TODO: Expose as config variable because high refresh rate is great when using a separate viewiing machine
         if ((self.DisplayFrame % 10) == 0)
         {
             self.SampleTimelineWindow.DrawAllRows();
@@ -230,7 +230,7 @@ Remotery = (function()
         sample.call_count = data_view_reader.GetUInt32();
         sample.recurse_depth = data_view_reader.GetUInt32();
 
-        // TODO(don): Get the profiler to pass these directly instead of hex colour
+        // _TODO(don): Get the profiler to pass these directly instead of hex colour
         const colour = parseInt(sample.colour.slice(1), 16);
         const r = (colour >> 16) & 255;
         const g = (colour >> 8) & 255;
@@ -402,7 +402,7 @@ Remotery = (function()
 
             // We are co-opting the sample rendering functionality of the timeline window to display processor threads as
             // thread samples. Fabricate a thread frame message, packing the processor info into one root sample.
-            // TODO(don): Abstract the timeline window for pure range display as this is quite inefficient.
+            // _TODO(don): Abstract the timeline window for pure range display as this is quite inefficient.
             let thread_message = {
                 nb_samples: 1,
                 sample_digest: 0,

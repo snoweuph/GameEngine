@@ -1,5 +1,7 @@
 package org.euph;
 
+import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
+import org.euph.engine.entityComponentSystem.systems.display.Window;
 import org.euph.engine.entityComponentSystem.Entity;
 import org.euph.engine.entityComponentSystem.components.TestComponent;
 import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;

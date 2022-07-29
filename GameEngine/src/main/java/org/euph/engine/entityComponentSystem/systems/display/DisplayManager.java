@@ -1,6 +1,5 @@
 package org.euph.engine.entityComponentSystem.systems.display;
 
-import org.euph.engine.entityComponentSystem.EngineSystem;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWImage;
 
@@ -36,7 +35,6 @@ public class DisplayManager {
         //Return 1 if already initialized
         if(initialized) return 1;
 
-        
         //Setup Error Callback
         GLFWErrorCallback.createPrint(System.err).set();
 
