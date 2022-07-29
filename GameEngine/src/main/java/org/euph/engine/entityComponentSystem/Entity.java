@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO: JavaDoc
-
 /** This is the Definition of an Entity inside the ECS.
  *
  * @author snoweuph
@@ -95,7 +93,6 @@ public class Entity {
         EntityComponentSystem.removeComponentReferences(component);
         return this;
     }
-
     /** Removes all Components of a Specific Type that are on an Entity
      *
      * @param componentClass the Type of Component that should be removed
