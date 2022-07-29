@@ -1,5 +1,6 @@
 package org.euph.engine.entityComponentSystem.systems.display;
 
+import org.euph.engine.entityComponentSystem.EntityComponentSystem;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWImage;
 

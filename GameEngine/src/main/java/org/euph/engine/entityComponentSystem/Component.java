@@ -1,6 +1,6 @@
 package org.euph.engine.entityComponentSystem;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /** This class contains the basic abstraction for a Component that will be used for an ECS.
  *
@@ -18,7 +18,7 @@ public abstract class Component {
      *
      * @author snoweuph
      */
-    protected abstract ArrayList<Component> getRequiredComponents();
+    protected abstract List<Component> getRequiredComponents();
 
     //Getter
     /** @return the Entity this Component is on.

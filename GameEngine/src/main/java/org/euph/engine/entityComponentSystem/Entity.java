@@ -1,6 +1,7 @@
 package org.euph.engine.entityComponentSystem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 //TODO: JavaDoc
@@ -35,7 +36,7 @@ public class Entity {
     /** The Recursive Function for Putting a Component onto an Entity and also adding all required Components.
      * This Function is wrapped by {@link #putComponent(Component)}.
      *
-     * parameter `ArrayList<Class<? extends Component>> componentsOnEntityList` and return value `ArrayList<Class<? extends Component>>` are Important
+     * parameter `List<Class<? extends Component>> componentsOnEntityList` and return value `List<Class<? extends Component>>` are Important
      * for keeping track of what Components are on the Entity without making Lots of Calls to {@link EntityComponentSystem#getComponentsOnEntity(Entity)},
      * while trying to add all required Components.
      *
@@ -48,7 +49,7 @@ public class Entity {
      *
      * @author snoweuph
      */
-    private ArrayList<Class<? extends Component>> putComponent(Component component, ArrayList<Class<? extends Component>> componentsOnEntityList){
+    private List<Class<? extends Component>> putComponent(Component component, List<Class<? extends Component>> componentsOnEntityList){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
         //Remove the Old References from the ECS
@@ -58,15 +59,15 @@ public class Entity {
         //Add the References to the ECS
         EntityComponentSystem.addComponentReferences(component, this);
         //Create a list of Existing Components on the Entity, if not an empty one was passed
-        ArrayList<Class<? extends Component>> componentsOnEntity = componentsOnEntityList;
+        List<Class<? extends Component>> componentsOnEntity = componentsOnEntityList;
         if(componentsOnEntity.size() <= 0){
-            ArrayList<Class<? extends Component>> tempComponentsOnEntity = componentsOnEntity;
+            List<Class<? extends Component>> tempComponentsOnEntity = componentsOnEntity;
             EntityComponentSystem.getComponentsOnEntity(this).forEach(c -> tempComponentsOnEntity.add(c.getClass()));
             //Filter of Duplicate Entries.
             componentsOnEntity = (ArrayList<Class<? extends Component>>) tempComponentsOnEntity.stream().distinct().collect(Collectors.toList());
         }
         //Create a List to store all Added Components
-        ArrayList<Class<? extends Component>> addedComponents = new ArrayList<>();
+        List<Class<? extends Component>> addedComponents = new ArrayList<>();
         //Iterate over Required Components
         for (Component requiredComponent: component.getRequiredComponents()){
             //Continue if Required Component is on Entity
@@ -74,7 +75,7 @@ public class Entity {
             //Run this Function Recursive for the Required Component, add the Added Components to the list of Components on this Entity and then remove duplicates
             componentsOnEntity.addAll(putComponent(requiredComponent, componentsOnEntity));
             addedComponents.add(requiredComponent.getClass());
-            componentsOnEntity = (ArrayList<Class<? extends Component>>) componentsOnEntity.stream().distinct().collect(Collectors.toList());
+            componentsOnEntity = (List<Class<? extends Component>>) componentsOnEntity.stream().distinct().collect(Collectors.toList());
         }
         //Return list of added Components
         return addedComponents;
@@ -99,7 +100,7 @@ public class Entity {
      *
      * @param componentClass the Type of Component that should be removed
      *
-     * @return returns this Entity, so that functions can be stacked.
+     * @return this Entity, so that functions can be stacked.
      *
      * @author snoweuph
      */
@@ -137,7 +138,7 @@ public class Entity {
      *
      * @author snoweuph
      */
-    public ArrayList<Component> getComponents(){
+    public List<Component> getComponents(){
         return EntityComponentSystem.getComponentsOnEntity(this);
     }
 }
