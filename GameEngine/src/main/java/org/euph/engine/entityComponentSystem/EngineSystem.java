@@ -1,11 +1,11 @@
 package org.euph.engine.entityComponentSystem;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ISystem {
+//TODO:JavaDoc
+public class EngineSystem {
 
-    protected static List<Component> getComponentInstances(Class<? extends  Component> componentClass){
+    protected static List<Component> getComponentInstances(Class<? extends Component> componentClass){
         return EntityComponentSystem.getComponentInstances(componentClass);
     }
 }
