@@ -1,4 +1,5 @@
 ## TODO: This Redme needs rework
+## TODO: Create some more Comment Tags that will be used and rules for them, to improve the workflow
 
 # GameEngine
 
