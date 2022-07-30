@@ -18,13 +18,18 @@ public class EntityComponentSystem {
     /** This Map Keeps track of all Instances of all {@link Component } Types.
      * The Systems of the ECS will use it to get all instances of specific {@link Component} to do their operation on the data these components hold.
      */
-    private static final Map<Class<? extends Component>, List<Component>> componentInstancesMap = new HashMap<>();
+    private final Map<Class<? extends Component>, List<Component>> componentInstancesMap = new HashMap<>();
     /** This Map Keeps track of all the Instances of {@link Component Components} that are on an {@link Entity}.
      * This is needed to ensure that each {@link Entity} has all the {@link Component Components}, the {@link Component Components} on it require.
      * an example would be that a MeshRenderer requires a Mesh component to work.
      * Keeping track and exposing some functionality of it through {@link Entity Entities} is also important to get some basic functionality working.
      */
-    private static final Map<Entity, List<Component>> entityComponentMap = new HashMap<>();
+    private final Map<Entity, List<Component>> entityComponentMap = new HashMap<>();
+
+    //Constructor
+    public EntityComponentSystem(){
+
+    }
 
     /** This will register a newly created {@link Entity} from inside its Constructor.
      *
@@ -32,7 +37,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static void createEntity(Entity entity){
+    protected void createEntity(Entity entity){
         //Test if this instance already has a references, if yes return.
         if(entityComponentMap.containsKey(entity)) return;
         //Create new Entry for this Entity.
@@ -45,7 +50,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static void deleteEntity(Entity entity){
+    protected void deleteEntity(Entity entity){
         //Test if this instance already has a references, if no return.
         if(!entityComponentMap.containsKey(entity)) return;
         //Remove the References for all Components on the Entity
@@ -62,7 +67,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static void addComponentReferences(Component component, Entity entity){
+    protected void addComponentReferences(Component component, Entity entity){
         //References to the Components Class
         Class<? extends Component> componentClass = component.getClass();
         List<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
@@ -92,7 +97,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static void removeComponentReferences(Component component){
+    protected void removeComponentReferences(Component component){
         //References to the Components Class
         Class<? extends Component> componentClass = component.getClass();
         List<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
@@ -122,7 +127,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static void removeComponentReferences(Entity entity, Class<? extends Component> componentClass){
+    protected void removeComponentReferences(Entity entity, Class<? extends Component> componentClass){
         //Test if Entity has any of these Components
         List<Component> entityComponents = entityComponentMap.get(entity);
         List<Class<? extends Component>> targets = getComponentInheritanceList(componentClass);
@@ -168,7 +173,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static List<Component> getComponentsOnEntity(Entity entity){
+    protected List<Component> getComponentsOnEntity(Entity entity){
         return entityComponentMap.get(entity);
     }
     /** This will list all instance of a specific {@link Component} type.
@@ -178,7 +183,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    protected static List<Component> getComponentInstances(Class<? extends  Component> componentClass){
+    protected List<Component> getComponentInstances(Class<? extends  Component> componentClass){
         return componentInstancesMap.get(componentClass);
     }
     /** This is used at multiple places inside the ECS to work with the Inheritance of Components.
@@ -190,7 +195,7 @@ public class EntityComponentSystem {
      *
      * @author snoweuph
      */
-    private static List<Class<? extends Component>> getComponentInheritanceList(Class<?extends Component> componentClass){
+    private List<Class<? extends Component>> getComponentInheritanceList(Class<?extends Component> componentClass){
         return new ArrayList<>(ProjectReflection.DATA.getSubTypesOf(componentClass));
     }
 }

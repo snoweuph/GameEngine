@@ -7,17 +7,19 @@ import java.util.stream.Collectors;
 /** This is the Definition of an Entity inside the ECS.
  *
  * @author snoweuph
- * @version 1.0
+ * @version 1.1
  */
 public class Entity {
 
     private boolean destroyed = false;
+    private final Scene SCENE;
     //Constructor
-    public Entity(){
-        EntityComponentSystem.createEntity(this);
+    public Entity(Scene scene){
+        SCENE = scene;
+        SCENE.getECS().createEntity(this);
     }
-    //Component Handling
 
+    //Component Handling
     /** Puts a Component onto this Entity.
      *
      * @param component the Component to put onto this.
@@ -30,7 +32,6 @@ public class Entity {
         putComponent(component, new ArrayList<>());
         return this;
     }
-
     /** The Recursive Function for Putting a Component onto an Entity and also adding all required Components.
      * This Function is wrapped by {@link #putComponent(Component)}.
      * parameter `List<Class<? extends Component>> componentsOnEntityList` and return value `List<Class<? extends Component>>` are Important
@@ -50,16 +51,16 @@ public class Entity {
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
         //Remove the Old References from the ECS
-        if(component.getEntity() != null) EntityComponentSystem.removeComponentReferences(component);
+        if(component.getEntity() != null) SCENE.getECS().removeComponentReferences(component);
         //Set the new Entity
         component.setEntity(this);
         //Add the References to the ECS
-        EntityComponentSystem.addComponentReferences(component, this);
+        SCENE.getECS().addComponentReferences(component, this);
         //Create a list of Existing Components on the Entity, if not an empty one was passed
         List<Class<? extends Component>> componentsOnEntity = componentsOnEntityList;
         if(componentsOnEntity.size() == 0){
             List<Class<? extends Component>> tempComponentsOnEntity = componentsOnEntity;
-            EntityComponentSystem.getComponentsOnEntity(this).forEach(c -> tempComponentsOnEntity.add(c.getClass()));
+            SCENE.getECS().getComponentsOnEntity(this).forEach(c -> tempComponentsOnEntity.add(c.getClass()));
             //Filter of Duplicate Entries.
             componentsOnEntity = tempComponentsOnEntity.stream().distinct().collect(Collectors.toList());
         }
@@ -77,7 +78,6 @@ public class Entity {
         //Return list of added Components
         return addedComponents;
     }
-
     /** Removes a Specific Component from the Entity.
      *
      * @param component the Component to remove.
@@ -89,7 +89,7 @@ public class Entity {
     public Entity removeComponent(Component component){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
-        EntityComponentSystem.removeComponentReferences(component);
+        SCENE.getECS().removeComponentReferences(component);
         return this;
     }
     /** Removes all Components of a Specific Type that are on an Entity
@@ -103,7 +103,7 @@ public class Entity {
     public Entity removeAllComponents(Class<?extends Component> componentClass){
         //If Already Destroyed Ignore and return
         if(destroyed) throw new IllegalStateException("This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references");
-        EntityComponentSystem.removeComponentReferences(this, componentClass);
+        SCENE.getECS().removeComponentReferences(this, componentClass);
         return this;
     }
 
@@ -116,7 +116,7 @@ public class Entity {
      */
     public void destroy(){
         destroyed = true;
-        EntityComponentSystem.deleteEntity(this);
+        SCENE.getECS().deleteEntity(this);
     }
 
     //Getter
@@ -129,12 +129,19 @@ public class Entity {
     public boolean isDestroyed() {
         return destroyed;
     }
-
     /** @return a list of all Components that are on this Entity
      *
      * @author snoweuph
      */
     public List<Component> getComponents(){
-        return EntityComponentSystem.getComponentsOnEntity(this);
+        return SCENE.getECS().getComponentsOnEntity(this);
+    }
+    //TODO: JavaDoc
+    public Entity getParent(){
+        return SCENE.getParent(this);
+    }
+    //TODO: JavaDoc
+    public List<Entity> getChildren(){
+        return  SCENE.getChildren(this);
     }
 }

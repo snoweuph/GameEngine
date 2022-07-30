@@ -1,6 +1,7 @@
-package org.euph.engine.entityComponentSystem.systems.scene;
+package org.euph.engine.entityComponentSystem;
 
 import org.euph.engine.entityComponentSystem.Entity;
+import org.euph.engine.entityComponentSystem.EntityComponentSystem;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,24 +22,37 @@ public class Scene {
 
     //TODO: -> scenes can be loaded and not loaded -> should the Scene System be part of the systems of the ECS os should be the ECS a part of the SceneSystem?
 
-    private final Entity ROOT = new Entity();
+    private final EntityComponentSystem ECS;
+    private final Entity ROOT;
     private final String NAME;
     private Map<Entity, List<Entity>> entityChildrenMap = new HashMap<>();
     private Map<Entity, Entity> entityParentMap = new HashMap<>();
 
+    //Constructor
     public Scene() {
         NAME = "unnamed Scene";
+        ECS = new EntityComponentSystem();
+        ROOT = new Entity(this);
     }
-    public  Scene(String name){
+    public Scene(String name){
         NAME = name;
+        ECS = new EntityComponentSystem();
+        ROOT = new Entity(this);
     }
-    //getter
+
+    //Getter
+    protected EntityComponentSystem getECS(){
+        return ECS;
+    }
+    public String getNAME() {
+        return NAME;
+    }
     //INFO: will return null, if the parent is the ROOT entity;
-    public Entity getParent(Entity entity){
+    protected Entity getParent(Entity entity){
         Entity parent = entityParentMap.get(entity);
         return parent.equals(ROOT) ? null : parent;
     }
-    public List<Entity> getChildren(Entity entity){
+    protected List<Entity> getChildren(Entity entity){
         return entityChildrenMap.get(entity);
     }
 }
