@@ -136,11 +136,17 @@ public class Entity {
     public List<Component> getComponents(){
         return SCENE.getECS().getComponentsOnEntity(this);
     }
-    //TODO: JavaDoc
+    /** @return the parent {@link Entity}.
+     *
+     * @author snoweuph
+     */
     public Entity getParent(){
         return SCENE.getParent(this);
     }
-    //TODO: JavaDoc
+    /** @return the list of all children.
+     *
+     * @author snoweuph
+     */
     public List<Entity> getChildren(){
         return  SCENE.getChildren(this);
     }

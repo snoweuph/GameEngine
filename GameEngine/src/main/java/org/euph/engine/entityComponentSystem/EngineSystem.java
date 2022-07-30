@@ -20,6 +20,8 @@ public abstract class EngineSystem {
      * @author snoweuph
      */
     protected static List<Component> getComponentInstances(Class<? extends Component> componentClass){
-        return EntityComponentSystem.getComponentInstances(componentClass);
+        //return EntityComponentSystem.getComponentInstances(componentClass);
+        //TODO:return it from Scene
+        return null;
     }
 }

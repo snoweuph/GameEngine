@@ -11,7 +11,7 @@ import java.util.Map;
  * Because of its responsibility it has an extremely tight Security and only expose what is really needed to be exposed.
  *
  * @author snoweuph
- * @version 1.0
+ * @version 1.1
  */
 public class EntityComponentSystem {
 
