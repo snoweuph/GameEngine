@@ -1,6 +1,7 @@
 package org.euph.engine.entityComponentSystem.components;
 
 import org.euph.engine.entityComponentSystem.Component;
+import org.euph.engine.entityComponentSystem.Entity;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO: getters and setters that are giving basic functionality, like a .translate(Vector3f translation) and .setTranslation(Vector3f translation)
-//TODO: getter and setter for child and parent Transforms (stored in a Scene -> linked to entity). this itself will only store its parent
 //TODO: JavaDoc
 
 /** This Component stores the Translation, Rotation and Scale of an Object in the Scene.
@@ -38,5 +38,25 @@ public class Transform extends Component {
     @Override
     protected List<Component> getRequiredComponents() {
         return new ArrayList<>();
+    }
+    //Getter
+    public Transform getParent(){
+        Entity entity = getEntity();
+        Entity parentEntity = entity.getParent();
+        if(parentEntity == null) return null;
+        return (Transform) parentEntity.getComponent(Transform.class);
+    }
+    //INFO: This is Quite expensive
+    public List<Transform> getChildren(){
+        Entity entity = getEntity();
+        List<Entity> children = entity.getChildren();
+        if(children.size() == 0)return new ArrayList<>();
+        List<Transform> childTransforms = new ArrayList<>();
+        for(Entity child : children){
+            Transform childTransform = (Transform) child.getComponent(Transform.class);
+            if(childTransform == null)continue;
+            childTransforms.add(childTransform);
+        }
+        return childTransforms;
     }
 }

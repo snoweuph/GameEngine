@@ -25,6 +25,7 @@ public class EntityComponentSystem {
      * Keeping track and exposing some functionality of it through {@link Entity Entities} is also important to get some basic functionality working.
      */
     private final Map<Entity, List<Component>> entityComponentMap = new HashMap<>();
+    //COULDDO: EntityComponentInstancesMap -> would be used to improve the filtered Entity.getComponent()
 
     //Constructor
     public EntityComponentSystem(){

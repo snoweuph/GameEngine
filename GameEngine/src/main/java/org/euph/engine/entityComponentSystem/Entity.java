@@ -129,12 +129,41 @@ public class Entity {
     public boolean isDestroyed() {
         return destroyed;
     }
-    /** @return a list of all Components that are on this Entity
+    /** @return a list of all Components that are on this Entity.
      *
      * @author snoweuph
      */
     public List<Component> getComponents(){
         return SCENE.getECS().getComponentsOnEntity(this);
+    }
+    /** A Filtered Version of {@link #getComponents()}.
+     *
+     * @param componentClass the Component type to filter for.
+     * @return a filtered list of all Components that are on this Entity
+     *
+     * @author snoweuph
+     */
+    public List<Component>  getComponents(Class<? extends Component> componentClass){
+        return SCENE.getECS().getComponentsOnEntity(this).stream().filter(x -> x.getClass().equals(componentClass)).toList();
+    }
+    /** A Version of {@link #getComponents(Class)} that returns only the first found object.
+     *
+     * @param componentClass  the Component type to filter for.
+     * @return the first instance of the specified {@link Component} on this Entity. If none found, it returns null.
+     *
+     * @author snoweuph
+     */
+    public Component getComponent(Class<? extends Component> componentClass){
+        List<Component> components= SCENE.getECS().getComponentsOnEntity(this).stream().filter(x -> x.getClass().equals(componentClass)).toList();
+        return components.size() == 0 ? null : components.get(0);
+    }
+
+    /** @return the {@link Scene} this is in.
+     *
+     * @author snoweuph
+     */
+    public Scene getSCENE() {
+        return SCENE;
     }
     /** @return the parent {@link Entity}.
      *
