@@ -3,6 +3,9 @@
 
 # GameEngine
 
+## Pull Request Templates
+[![latest-stable←dev](https://img.shields.io/badge/dev-latest--stable-brightgreen?style=flat-square)](https://github.com/snoweuph/GameEngine/compare/latest-stable...dev?template=dev_is_stable.md)
+
 ## Game Engine Information:
 
 what is used?
