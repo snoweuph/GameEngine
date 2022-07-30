@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO: getters and setters that are giving basic functionality, like a .translate(Vector3f translation) and .setTranslation(Vector3f translation)
-//TODO: getter and setter for child and parent Transforms (stored in a Scene). this itself will only store its parent
+//TODO: getter and setter for child and parent Transforms (stored in a Scene -> linked to entity). this itself will only store its parent
 //TODO: JavaDoc
 
 /** This Component stores the Translation, Rotation and Scale of an Object in the Scene.
