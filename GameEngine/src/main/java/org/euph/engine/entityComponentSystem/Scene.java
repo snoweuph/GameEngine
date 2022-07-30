@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 //TODO: Define what a Scene is. store structure of parents and child Transforms in this Scene
+//TODO: JavaDoc
 public class Scene {
     //Question: does a Scene store Transform Components or Entities ? -> Entities
     //new Question: where to store the Transforms and their connection then? -> it's directly linked to the connections of entities
