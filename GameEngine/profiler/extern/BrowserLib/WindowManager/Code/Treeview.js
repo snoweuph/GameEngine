@@ -27,7 +27,7 @@ WM.Treeview = (function()
 		</div>";
 
 
-	// TODO: Remove parent_node (required for stuff that doesn't use the WM yet)
+	// _TODO: Remove parent_node (required for stuff that doesn't use the WM yet)
 	function Treeview(x, y, width, height, parent_node)
 	{
 		// Cache initialisation options
