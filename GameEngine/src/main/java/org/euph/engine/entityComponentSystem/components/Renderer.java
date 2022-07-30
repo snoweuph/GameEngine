@@ -5,10 +5,11 @@ import org.euph.engine.entityComponentSystem.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestComponent extends Component {
-
+abstract public class Renderer extends Component {
     @Override
     protected List<Component> getRequiredComponents() {
-        return new ArrayList<>();
+        List<Component> components = new ArrayList<>();
+        components.add(new Transform());
+        return components;
     }
 }
