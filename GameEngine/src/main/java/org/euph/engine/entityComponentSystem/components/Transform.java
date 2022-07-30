@@ -7,13 +7,16 @@ import org.joml.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: this
+//TODO: getters and setters that are giving basic functionality, like a .translate(Vector3f translation) and .setTranslation(Vector3f translation)
+//TODO: getter and setter for child and parent Transforms (stored in a Scene). this itself will only store its parent
 //TODO: JavaDoc
 
 /** This Component stores the Translation, Rotation and Scale of an Object in the Scene.
  * Through it its also possible to get and set the child transforms.
  * This {@link Component} is part of
  *
+ * @author snoweuph
+ * @version 1.0
  */
 public class Transform extends Component {
     private Matrix4f transformationMatrix;
