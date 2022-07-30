@@ -1,5 +1,5 @@
 
-// TODO: requires function for checking existence of dependencies
+// _TODO: requires function for checking existence of dependencies
 
 
 function namespace(name)

@@ -1,4 +1,4 @@
-package org.euph.engine.displaySystem;
+package org.euph.engine.entityComponentSystem.systems.display;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
