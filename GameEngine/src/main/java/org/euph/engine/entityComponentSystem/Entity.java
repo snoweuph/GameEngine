@@ -16,7 +16,11 @@ public class Entity {
     //Constructor
     public Entity(Scene scene){
         SCENE = scene;
-        SCENE.getECS().createEntity(this);
+        SCENE.createEntity(this, null);
+    }
+    public Entity(Scene scene, Entity parent){
+        SCENE = scene;
+        SCENE.createEntity(this, parent);
     }
 
     //Component Handling
@@ -116,7 +120,7 @@ public class Entity {
      */
     public void destroy(){
         destroyed = true;
-        SCENE.getECS().deleteEntity(this);
+        SCENE.deleteEntity(this);
     }
 
     //Getter
@@ -179,4 +183,17 @@ public class Entity {
     public List<Entity> getChildren(){
         return  SCENE.getChildren(this);
     }
+
+    //Setter
+    //INFO: Should Only be used to speedup loops in SCENE
+    protected void setDestroyed() {
+        destroyed = true;
+    }
+    public void setParent(Entity parent){
+        SCENE.setParent(this, parent);
+    }
+    public void setParent(){
+        SCENE.setParentRoot(this);
+    }
+
 }

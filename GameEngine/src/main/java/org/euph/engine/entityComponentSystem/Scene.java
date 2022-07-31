@@ -1,18 +1,11 @@
 package org.euph.engine.entityComponentSystem;
 
-import org.euph.engine.entityComponentSystem.Entity;
-import org.euph.engine.entityComponentSystem.EntityComponentSystem;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO: Define what a Scene is. store structure of parents and child Transforms in this Scene
-//TODO: Make Scene Serializable -> Store Scenes in extra files / have a System to create Scenes -> for code usage having a function that creates the wanted scene is enough, but for an Editor Serialization is needed to improve performance.
-//TODO: JavaDoc
-//INFO: Scene names only purpose is to be displayed in debug info or loading screens. It should not get any more functionality, like filtering scenes by their name.
-//TODO: -> scenes can be loaded and not loaded -> should the Scene System be part of the systems of the ECS os should be the ECS a part of the SceneSystem? -> ECS should be part of SCENE
+//TODO: JavaDoc -> Scene names only purpose is to be displayed in debug information or loading screens. It should not get any more functionality, like filtering scenes by their name.
 public class Scene {
 
     private final EntityComponentSystem ECS;
@@ -34,11 +27,56 @@ public class Scene {
         ROOT = new Entity(this);
     }
 
+    protected void createEntity(Entity entity, Entity parent){
+        if(parent != null){
+            bindParent(entity, parent);
+        }else {
+            bindParent(entity, ROOT);
+        }
+        ECS.createEntity(entity);
+    }
+    protected void deleteEntity(Entity entity){
+        ECS.deleteEntity(entity);
+        unbindParent(entity);
+        List<Entity> children = entityChildrenMap.get(entity);
+        for(Entity child : children){
+            ECS.deleteEntity(child);
+            child.setDestroyed();
+            entityParentMap.remove(child);
+        }
+        entityChildrenMap.remove(entity);
+        entityParentMap.remove(entity);
+    }
+    //INFO: When null, parent will be set to ROOT of scene
+    protected void setParent(Entity entity, Entity parent){
+        unbindParent(entity);
+        bindParent(entity, parent == null ? ROOT : parent);
+    }
+    protected void setParentRoot(Entity entity){
+        unbindParent(entity);
+        bindParent(entity, ROOT);
+    }
+    private void unbindParent(Entity entity){
+        Entity parent = entityParentMap.get(entity);
+        List<Entity> childrenOfParent = entityChildrenMap.get(parent);
+        childrenOfParent.remove(entity);
+        entityChildrenMap.put(parent, childrenOfParent);
+    }
+    private void bindParent(Entity entity, Entity parent){
+        if(!entityChildrenMap.containsKey(parent)){
+            entityChildrenMap.put(parent, new ArrayList<>());
+        }
+        List<Entity> children = entityChildrenMap.get(parent);
+        children.add(entity);
+        entityChildrenMap.put(parent, children);
+        entityParentMap.put(entity, parent);
+    }
+
     //Getter
     protected EntityComponentSystem getECS(){
         return ECS;
     }
-    public String getNAME() {
+    public String getName() {
         return NAME;
     }
     //INFO: will return null, if the parent is the ROOT entity;
