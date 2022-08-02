@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class SceneSystem {
     private static final List<Scene> scenes = new ArrayList<>();
-    private static final List<Scene> loadedScenes = new ArrayList<>();;
+    private static final List<Scene> loadedScenes = new ArrayList<>();
     private static final List<Scene> unloadedScenes = new ArrayList<>();
 
     //Scene Management
