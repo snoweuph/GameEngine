@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
 import org.euph.engine.util.ProjectReflection;
 
@@ -13,7 +13,7 @@ import java.util.Map;
  * @author snoweuph
  * @version 1.1
  */
-public class EntityComponentSystem {
+public class EntityComponentManager {
 
     /** This Map Keeps track of all Instances of all {@link Component } Types.
      * The Systems of the ECS will use it to get all instances of specific {@link Component} to do their operation on the data these components hold.
@@ -28,7 +28,7 @@ public class EntityComponentSystem {
     //COULDDO: EntityComponentInstancesMap -> would be used to improve the filtered Entity.getComponent()
 
     //Constructor
-    public EntityComponentSystem(){
+    public EntityComponentManager(){
 
     }
 

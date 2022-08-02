@@ -1,7 +1,7 @@
 package org.euph;
 
-import org.euph.engine.entityComponentSystem.systems.display.DisplayManager;
-import org.euph.engine.entityComponentSystem.systems.display.Window;
+import org.euph.engine.systems.display.DisplayManager;
+import org.euph.engine.systems.display.Window;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.util.remotery.Remotery;
 import org.lwjgl.util.remotery.RemoteryGL;

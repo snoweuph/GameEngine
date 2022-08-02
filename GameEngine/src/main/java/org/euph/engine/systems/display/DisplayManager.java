@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem.systems.display;
+package org.euph.engine.systems.display;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWImage;
@@ -78,7 +78,7 @@ public class DisplayManager {
      * @param vsync Whether Vsync should be enabled.
      * @param bind Whether this window should be bound directly.
      *
-     * @return a new {@link org.euph.engine.entityComponentSystem.systems.display.Window Window} Object.
+     * @return a new {@link org.euph.engine.systems.display.Window Window} Object.
      *
      * @see #createWindow(int, int, long, String, boolean, boolean, boolean, boolean) createWindow medium parameters
      * @see #createWindow(int, int, long, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) createWindow maximum parameters
@@ -126,7 +126,7 @@ public class DisplayManager {
      * @param vsync Whether Vsync should be enabled.
      * @param bind Whether this window should be bound directly.
      *
-     * @return a new {@link org.euph.engine.entityComponentSystem.systems.display.Window Window} Object.
+     * @return a new {@link org.euph.engine.systems.display.Window Window} Object.
      *
      * @see #createWindow(int, int, boolean, boolean) createWindow minimal parameters
      * @see #createWindow(int, int, long, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) createWindow maximum parameters
@@ -176,7 +176,7 @@ public class DisplayManager {
      * @param vsync Whether Vsync should be enabled.
      * @param bind Whether this window should be bound directly.
      *
-     * @return a new {@link org.euph.engine.entityComponentSystem.systems.display.Window Window} Object.
+     * @return a new {@link org.euph.engine.systems.display.Window Window} Object.
      *
      * @see #createWindow(int, int, long, String, boolean, boolean, boolean, boolean) createWindow medium parameters
      * @see #createWindow(int, int, long, String, GLFWImage.Buffer, boolean, boolean, boolean, boolean) createWindow maximum parameters

@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import java.util.List;
  */
 public abstract class EngineSystem {
 
-    /** Wraps the {@link EntityComponentSystem#getComponentInstances(Class) getComponentInstances(Class)} function
-     * of the {@link EntityComponentSystem ECS} that is protected, so that it's available to the Systems of the ECS that need it.
+    /** Wraps the {@link EntityComponentManager#getComponentInstances(Class) getComponentInstances(Class)} function
+     * of the {@link EntityComponentManager ECS} that is protected, so that it's available to the Systems of the ECS that need it.
      *
      * @param componentClass the type of component to search for.
      * @return the list of all Instances of this type of Component.
@@ -20,6 +20,6 @@ public abstract class EngineSystem {
      * @author snoweuph
      */
     protected static List<Component> getComponentInstances(Class<? extends Component> componentClass){
-        return SceneSystem.getComponentInstances(componentClass);
+        return SceneManager.getComponentInstances(componentClass);
     }
 }

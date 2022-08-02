@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +7,14 @@ import java.util.List;
 /* - Implement Serialized Scene Objects
    - Make Scene Loading into an extra Thread that is just used for reading Serialized Scene Files
      (will return its current loading status, so that this can be used in a Loading screen or similar)
-   - Make a Scene Writer Thread, that write Scenes to a Serialized file, can be accessed by a SceneSystem#saveScene(String path, Scene scene)
+   - Make a Scene Writer Thread, that write Scenes to a Serialized file, can be accessed by a SceneManager#saveScene(String path, Scene scene)
  */
-/** The SceneSystem, it manages all {@link Scene Scenes}, their loading and unloading and saving.
+/** The SceneManager, it manages all {@link Scene Scenes}, their loading and unloading and saving.
  *
  * @author snoweuph
  * @version 1.0
  */
-public class SceneSystem {
+public class SceneManager {
     private static final List<Scene> scenes = new ArrayList<>();
     private static final List<Scene> loadedScenes = new ArrayList<>();
     private static final List<Scene> unloadedScenes = new ArrayList<>();

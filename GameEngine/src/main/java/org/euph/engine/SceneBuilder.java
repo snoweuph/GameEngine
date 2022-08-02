@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
 public abstract class SceneBuilder {
 

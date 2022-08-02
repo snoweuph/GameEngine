@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class Entity {
     /** The Recursive Function for Putting a Component onto an Entity and also adding all required Components.
      * This Function is wrapped by {@link #putComponent(Component)}.
      * parameter `List<Class<? extends Component>> componentsOnEntityList` and return value `List<Class<? extends Component>>` are Important
-     * for keeping track of what Components are on the Entity without making Lots of Calls to {@link EntityComponentSystem#getComponentsOnEntity(Entity)},
+     * for keeping track of what Components are on the Entity without making Lots of Calls to {@link EntityComponentManager#getComponentsOnEntity(Entity)},
      * while trying to add all required Components.
      *
      * @throws IllegalStateException This Entity is Destroyed and Waiting for GC. It shouldn't have anymore references

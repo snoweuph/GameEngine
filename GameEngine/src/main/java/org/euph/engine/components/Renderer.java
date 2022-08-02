@@ -1,6 +1,6 @@
 package org.euph.engine.entityComponentSystem.components;
 
-import org.euph.engine.entityComponentSystem.Component;
+import org.euph.engine.Component;
 
 import java.util.ArrayList;
 import java.util.List;

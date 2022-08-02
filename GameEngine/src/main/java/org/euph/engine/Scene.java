@@ -1,6 +1,5 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.Map;
  */
 public class Scene {
     private boolean destroyed = false;
-    private final EntityComponentSystem ECS;
+    private final EntityComponentManager ECS;
     private final Entity ROOT;
     private final String NAME;
     private List<Entity> entityList = new ArrayList<>();
@@ -28,9 +27,9 @@ public class Scene {
      */
     protected Scene() {
         NAME = "unnamed Scene";
-        ECS = new EntityComponentSystem();
+        ECS = new EntityComponentManager();
         ROOT = new Entity(this);
-        SceneSystem.createScene(this);
+        SceneManager.createScene(this);
     }
     /** Creates a new {@link Scene} with a name.
      *
@@ -40,9 +39,9 @@ public class Scene {
      */
     protected Scene(String name){
         NAME = name;
-        ECS = new EntityComponentSystem();
+        ECS = new EntityComponentManager();
         ROOT = new Entity(this);
-        SceneSystem.createScene(this);
+        SceneManager.createScene(this);
     }
 
     //Entity Handling
@@ -158,13 +157,13 @@ public class Scene {
     public boolean isDestroyed() {
         return destroyed;
     }
-    /**@return the {@link EntityComponentSystem ECS} of this {@link Scene}.
+    /**@return the {@link EntityComponentManager ECS} of this {@link Scene}.
      *
      * @throws IllegalStateException The Scene is accessed, though its already destroyed and waiting for GC.
      *
      * @author snoweuph
      */
-    protected EntityComponentSystem getECS(){
+    protected EntityComponentManager getECS(){
         if(destroyed) throw new IllegalStateException("This Scene is Destroyed and Waiting for GC. It shouldn't have anymore references");
         return ECS;
     }

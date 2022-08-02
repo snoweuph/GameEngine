@@ -1,7 +1,7 @@
 package org.euph.engine.entityComponentSystem.components;
 
-import org.euph.engine.entityComponentSystem.Component;
-import org.euph.engine.entityComponentSystem.Entity;
+import org.euph.engine.Component;
+import org.euph.engine.Entity;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
