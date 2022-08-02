@@ -5,10 +5,12 @@ import org.euph.engine.entityComponentSystem.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestComponent extends Component {
-
+//TODO: this
+//TODO: JavaDoc
+abstract public class Renderer extends Component {
     @Override
     protected List<Component> getRequiredComponents() {
-        return new ArrayList<>();
+        List<Component> components = new ArrayList<>();
+        return components;
     }
 }

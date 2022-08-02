@@ -1,1 +1,2 @@
-GameEngine/out/*
+GameEngine/out/
+GameEngine/*.log
