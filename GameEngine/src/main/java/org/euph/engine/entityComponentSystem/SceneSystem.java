@@ -9,6 +9,7 @@ import java.util.List;
      (will return its current loading status, so that this can be used in a Loading screen or similar)
    - Make a Scene Writer Thread, that write Scenes to a Serialized file, can be accessed by a SceneSystem#saveScene(String path, Scene scene)
  */
+//TODO: JavaDoc
 public class SceneSystem {
     private static List<Scene> scenes = new ArrayList<>();
     private static List<Scene> loadedScenes = new ArrayList<>();;
