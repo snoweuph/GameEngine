@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem.systems.render;
+package org.euph.engine.systems.render;
 
 //TODO: this
 //TODO: JavaDoc

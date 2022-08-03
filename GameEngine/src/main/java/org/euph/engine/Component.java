@@ -1,4 +1,4 @@
-package org.euph.engine.entityComponentSystem;
+package org.euph.engine;
 
 import java.util.List;
 
