@@ -11,7 +11,7 @@ package org.euph.engine.util;
 public class Path {
     public static final String ROOT = "/";
     public static final String RESOURCES = ROOT + "res/";
-    public static final String SCENES = ROOT + "scenes/";
+    public static final String SCENES = RESOURCES + "scenes/";
     public static final String SHADERS = RESOURCES + "shaders/";
     //Default Paths
     public static final String DEFAULT_RESOURCES = RESOURCES + "default/";
