@@ -3,12 +3,16 @@ package org.euph;
 import org.euph.engine.systems.display.DisplayManager;
 import org.euph.engine.systems.display.Window;
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.opengl.GL30C;
 import org.lwjgl.util.remotery.Remotery;
 import org.lwjgl.util.remotery.RemoteryGL;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Main {
+
+    private static float x;
+
     public static void main(String[] args) {
 
         //Initialize the Window Manager
@@ -46,6 +50,11 @@ public class Main {
     public static void mainLoop(Window win) {
         //Update Inputs, Events and Callbacks
         glfwPollEvents();
+
+        GL30C.glClear(GL30C.GL_COLOR_BUFFER_BIT | GL30C.GL_DEPTH_BUFFER_BIT);
+        GL30C.glClearColor((float) Math.sin(x) / 2f + 0.5f, (float) Math.cos(x) / 2f + 0.5f, (((float) Math.sin(x * 2f) / 2f + 0.5f) +  ((float) Math.cos(x * 0.5f) / 2f + 0.5f)) / 2f , 1.0f);
+        x += win.getDelta();
+
         //Update the Window
         win.update();
     }
